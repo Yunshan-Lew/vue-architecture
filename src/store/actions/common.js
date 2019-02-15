@@ -6,7 +6,7 @@ import axios from 'axios'
 export const commonAction = {
   fetchCommon ({ dispatch, commit, state, rootState }, param, defaultParam = config.defaultParam) {
     const userToken = /*rootState.authority.userInfo.token ||*/ cookies.get('token')
-		const { url, sign, data, onSuccess, onFail } = param
+		const { url, sign, data, onSuccess, onFail, router } = param
     
 		const SUCCESS = config.status.success
 		const FAIL = config.status.fail
@@ -44,7 +44,7 @@ export const commonAction = {
 					}
 				}
 				else if( res.data.code.indexOf(EXPIRES) > -1 ){
-					
+					router.push({ path: '/login' })
 				}
 			}
 		})

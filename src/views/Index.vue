@@ -36,7 +36,7 @@
 			let password = 'lzp123456'
 			
 			this.fetchCommon({
-				url: 'admin/login/',
+				url: '/admin/login/',
 				sign: 'loginInfo',
 				data: { 
 					phone, 
@@ -49,7 +49,8 @@
 				},
 				onFail: (error) => {
 					console.log(error)
-				}
+				},
+				router: this.$router
 			})
 		}
 	}
