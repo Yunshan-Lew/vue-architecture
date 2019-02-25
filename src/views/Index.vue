@@ -1,22 +1,27 @@
 <template>
-  <div>
+  <div class="font-15">
 		{{ msg }}
 		<p v-for="(value, key) in loginInfo" v-if="key !== 'perm'" :key="key">
 			{{ `${ key }: ${value}` }}
 		</p>
+		<ft-cells  style="margin-bottom: .4rem;">
+			<ft-field label="手机号码" placeholder="请输入手机号码" class="field-cell" v-model="phone"></ft-field>
+		</ft-cells>
 		<router-link to="/helloworld">Hello World</router-link>
   </div>
 </template>
 
 <script>
 	import { mapState, mapActions } from 'vuex'
+	import { Cells, Field } from '@/components'
 	import md5 from 'md5'
 
 	export default {
 		name: 'Index',
 		data () {
 			return {
-				msg: 'First page'
+				msg: 'First page',
+				phone: '110'
 			}
 		},
 		methods: {
@@ -52,7 +57,11 @@
 				},
 				router: this.$router
 			})
-		}
+		},
+		components: {
+      [Field.name]: Field,
+      [Cells.name]: Cells
+    }
 	}
 </script>
 

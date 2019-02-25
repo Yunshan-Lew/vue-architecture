@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="hello font-15">
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
     <router-link to="/">Index</router-link>

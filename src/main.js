@@ -4,7 +4,7 @@ import Vue from 'vue'
 import App from '@/App'
 import router from '@/router/router'
 import store from '@/store'
-
+import '@/style/ftui.less'
 import '@/style/style.less'
 
 Vue.config.productionTip = false

@@ -1,0 +1,51 @@
+@import "../../base/fn";
+
+.@{cssPrefix}-navbar {
+  display: flex;
+  position: absolute;
+  z-index: 500;
+  top: 0;
+  width: 100%;
+  background-color: #FFFFFF;
+
+  &:after {
+      .setBottomLine(#CCCCCC);
+  }
+
+  &_fixed{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99
+  }
+}
+
+.@{cssPrefix}-navbar_item {
+  position: relative;
+  display: block;
+  flex: 1;
+  padding: 13px 0;
+  text-align: center;
+  font-size: 15px;
+  box-sizing: border-box;
+  .setTapColor();
+
+  &:active {
+      background-color: #EDEDED;
+  }
+
+  &.@{cssPrefix}-navbar_item_on {
+    color: @ftColorPrimary;
+    border-bottom: 3px solid @ftColorPrimary
+  }
+
+/* &:after {
+       .setRightLine(#CCCCCC);
+  } */
+
+  &:last-child {
+      &:after {
+          display: none;
+      }
+  }
+}
