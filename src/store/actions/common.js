@@ -1,6 +1,7 @@
 import config from '@/config/config'
 import cookies from 'js-cookie'
 import { toQueryString } from '@/utils/toQueryString'
+import { redirect } from '@/utils/redirect'
 import axios from 'axios'
 
 export const commonAction = {
@@ -44,7 +45,7 @@ export const commonAction = {
 					}
 				}
 				else if( res.data.code.indexOf(EXPIRES) > -1 ){
-					router.push({ path: '/login' })
+					 redirect('/')
 				}
 			}
 		})
