@@ -3,7 +3,7 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
 	mode: 'history',
   routes: [
     {
@@ -20,3 +20,11 @@ export default new Router({
     }
   ]
 })
+
+router.afterEach((to, from) => {
+  Vue.$vux.toast.hide()
+  Vue.$vux.confirm.hide()
+	Vue.$vux.loading.hide()
+})
+
+export default router

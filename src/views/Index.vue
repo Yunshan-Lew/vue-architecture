@@ -7,13 +7,14 @@
 		<ft-cells  style="margin-bottom: .4rem;">
 			<ft-field label="手机号码" placeholder="请输入手机号码" class="field-cell" v-model="phone"></ft-field>
 		</ft-cells>
+		<image-upload v-model="pic_id_front" title="身份证正面" :limit="2"  imgType="1" modules="partuse_pic_id_front" :token="qiniutoken"/>
 		<router-link to="/helloworld">Hello World</router-link>
   </div>
 </template>
 
 <script>
 	import { mapState, mapActions } from 'vuex'
-	import { Cells, Field } from '@/components'
+	import { Cells, Field, ImageUpload } from '@/components'
 	import md5 from 'md5'
 
 	export default {
@@ -21,7 +22,9 @@
 		data () {
 			return {
 				msg: 'First page',
-				phone: '110'
+				phone: '110',
+				qiniutoken: "",
+				pic_id_front: []
 			}
 		},
 		methods: {
@@ -50,17 +53,26 @@
 					"authType": "pub" 
 				},
 				onSuccess: (res) => {
-					console.log(res)
+					this.$vux.toast.show({
+						time: 2000,
+						type: 'text',
+						text: res.msg
+					})
 				},
 				onFail: (error) => {
-					console.log(error)
+					this.$vux.toast.show({
+						time: 2000,
+						type: 'text',
+						text: error.msg
+					})
 				},
 				router: this.$router
 			})
 		},
 		components: {
       [Field.name]: Field,
-      [Cells.name]: Cells
+      [Cells.name]: Cells,
+			[ImageUpload.name]: ImageUpload
     }
 	}
 </script>
