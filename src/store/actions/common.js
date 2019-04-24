@@ -35,7 +35,6 @@ export const commonAction = {
 							data: res.data
 						})
 					}
-					console.log('success')
 					if (typeof onSuccess === 'function') {
 						onSuccess(res.data)
 					}
@@ -47,20 +46,15 @@ export const commonAction = {
 							data: res.data
 						})
 					}
-					console.log('fail')
 					if (typeof onFail === 'function') {
 						onFail(res.data)
 					}
 				}
 				else if( EXPIRES.indexOf(code) > -1 ){
 					// redirect('/')
-					if( sign ){
-						commit('COMMON_EXPIRES', {
-							sign,
-							data: res.data
-						})
-					}
-					console.log('expires')
+					cookies.set('logState', 'false', { 
+						expires: 7 
+					})
 					router.push({ path: '/login' })
 				}
 			}
