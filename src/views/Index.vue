@@ -65,8 +65,7 @@
 						type: 'text',
 						text: error.msg
 					})
-				},
-				router: this.$router
+				}
 			})
 		},
 		components: {
