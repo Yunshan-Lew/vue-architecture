@@ -27,28 +27,20 @@ export const commonAction = {
     })
 		.then((res) => {
 			if (res && res.status === 200) {
-				let { code } = res.data
+				let { code, data } = res.data
 				if( SUCCESS.indexOf(code) > -1 ) {
 					if( sign ){
 						commit('COMMON_SUCCESS', {
 							sign,
-							data: res.data
+							data: data
 						})
 					}
 					if (typeof onSuccess === 'function') {
 						onSuccess(res.data)
 					}
 				}
-				else if ( FAIL.indexOf(code) < 0 ) {
-					if( sign ){
-						commit('COMMON_FAILURE', {
-							sign,
-							data: res.data
-						})
-					}
-					if (typeof onFail === 'function') {
-						onFail(res.data)
-					}
+				else if ( FAIL.indexOf(code) < 0 && typeof onFail === 'function') {
+					onFail(res.data)
 				}
 				else if( EXPIRES.indexOf(code) > -1 ){
 					// redirect('/')
@@ -60,12 +52,6 @@ export const commonAction = {
 			}
 		})
 		.catch((error) => {
-			if( sign ){
-				commit('COMMON_FAILURE', {
-					sign,
-					data: error
-				})
-			}
 			if (typeof onFail === 'function') {
 				if (config.debug) {
 					onFail({ msg: JSON.stringify(error) })
