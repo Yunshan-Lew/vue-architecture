@@ -29,7 +29,7 @@ export const commonAction = {
 			if (res && res.status === 200) {
 				let { code, data } = res.data
 				if( SUCCESS.indexOf(code) > -1 ) {
-					if( sign ){
+					if( sign && typeof data !== 'undefined' ){
 						commit('COMMON_SUCCESS', {
 							sign,
 							data: data
